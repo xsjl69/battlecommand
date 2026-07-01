@@ -375,7 +375,11 @@
         showMsg('loginMsg', `登录成功！角色：${data.role === 'executor' ? '刀手' : '指挥'}`, 'success');
         localStorage.setItem('bc-token', data.token);
         localStorage.setItem('bc-role', data.role);
-        setTimeout(() => { window.location.reload(); }, 800);
+        if (data.role === 'executor') {
+          window.location.href = '/executor.html';
+        } else {
+          window.location.href = '/commander.html';
+        }
       } catch (err) {
         showMsg('loginMsg', err.message, 'error');
       } finally {
