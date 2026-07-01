@@ -5,4 +5,4 @@ pages_build_output_dir = ""
 [[d1_databases]]
 binding = "DB"
 database_name = "db_battlecommand"
-database_id = "YOUR_DATABASE_ID"
+database_id = "50cdc828-6b3f-47e5-add4-629db153463f"
