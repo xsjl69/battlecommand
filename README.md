@@ -1,3 +1,14 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: c3fde22f026d7eea8b9511f8b9279ed9_e22872de74f511f1aabe5254007bceed
+    ReservedCode1: hLdrlJdPtPHmDzYfjXodPFyE2goFm2Y1SJ2w57PZlHO1KvkkjqP6NyFC5bOwSM0QpE7AZQ+Gf4o35WbaNBWVXEp+PvYK1Oz0U4zOmo7RIL/9XacrPDeKJbAoX13BODVAmO37M/9ckiGWi7QkeAYKOR8n1EvblYwKp/EzYIno1cIv0Omi225UfsZoAMU=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: c3fde22f026d7eea8b9511f8b9279ed9_e22872de74f511f1aabe5254007bceed
+    ReservedCode2: hLdrlJdPtPHmDzYfjXodPFyE2goFm2Y1SJ2w57PZlHO1KvkkjqP6NyFC5bOwSM0QpE7AZQ+Gf4o35WbaNBWVXEp+PvYK1Oz0U4zOmo7RIL/9XacrPDeKJbAoX13BODVAmO37M/9ckiGWi7QkeAYKOR8n1EvblYwKp/EzYIno1cIv0Omi225UfsZoAMU=
+---
+
 # BattleCommand — Cloudflare Pages 全栈项目
 
 基于 Cloudflare Pages + D1 的角色认证系统。前端登录/注册页面，后端 JWT 鉴权 API，支持日间/夜间/护眼三模式主题。
@@ -34,3 +45,4 @@ Pages 项目 → **设置** → **环境变量** → 添加：
 |----|------|
 | `executor` | 刀手 |
 | `commander` | 指挥 |
+*（内容由AI生成，仅供参考）*
