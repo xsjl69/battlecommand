@@ -218,6 +218,7 @@
     }
 
     function pollMessages() {
+      loadPinned();
       apiGet('/api/chat/messages').then(messages => {
         if (!messages || messages.length === 0) return;
         const wasAtBottom = isAtBottom();
