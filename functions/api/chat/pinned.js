@@ -13,10 +13,10 @@ export async function onRequestGet({ request, env }) {
            u.username AS sender_name
     FROM chat_message cm
     JOIN user u ON cm.sender_id = u.id
-    WHERE cm.receiver_id = ? AND cm.is_pinned = 1
+    WHERE (cm.receiver_id = ? OR cm.sender_id = ?) AND cm.is_pinned = 1
     ORDER BY cm.created_at DESC
     LIMIT 1
-  `).bind(userId).first();
+  `).bind(userId, userId).first();
 
   return json(msg || null);
 }

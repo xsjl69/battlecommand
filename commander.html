@@ -178,7 +178,7 @@
     fetch('/api/me', { headers: { 'Authorization': 'Bearer ' + token } })
       .then(r => r.json())
       .then(data => { if (data.id) currentUserId = data.id; })
-      .then(() => { loadPinned(); loadMessages(); })
+      .then(() => { loadPinned(); loadMessages(); startPolling(); })
       .catch(() => {});
 
     function apiGet(url) {
@@ -200,12 +200,57 @@
     }
 
     const chatArea = document.getElementById('chatArea');
+    let knownMessageIds = new Set();
+    let pollTimer = null;
+
+    function isAtBottom() {
+      return chatArea.scrollHeight - chatArea.scrollTop - chatArea.clientHeight < 50;
+    }
+
+    function startPolling() {
+      stopPolling();
+      pollTimer = setInterval(pollMessages, 3000);
+    }
+
+    function stopPolling() {
+      if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+    }
+
+    function pollMessages() {
+      apiGet('/api/chat/messages').then(messages => {
+        if (!messages || messages.length === 0) return;
+        const wasAtBottom = isAtBottom();
+        const emptyEl = chatArea.querySelector('.msg-empty');
+        if (emptyEl) emptyEl.remove();
+
+        messages.forEach(msg => {
+          if (knownMessageIds.has(msg.id)) return;
+          knownMessageIds.add(msg.id);
+          const isSelf = msg.sender_id === currentUserId;
+          const div = document.createElement('div');
+          div.className = 'msg-row ' + (isSelf ? 'self' : 'other');
+          const senderLabel = isSelf ? '我' : (msg.sender_name || '用户');
+          div.innerHTML = `<div class="msg-sender">${escapeHtml(senderLabel)}</div><div class="msg-bubble">${escapeHtml(msg.content)}</div>`;
+          chatArea.appendChild(div);
+        });
+
+        if (wasAtBottom) {
+          chatArea.scrollTop = chatArea.scrollHeight;
+        }
+      }).catch(() => {});
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopPolling();
+      else startPolling();
+    });
 
     function loadMessages() {
       apiGet('/api/chat/messages').then(messages => {
         const watermark = chatArea.querySelector('.chat-watermark');
         chatArea.innerHTML = '';
         if (watermark) chatArea.appendChild(watermark);
+        knownMessageIds.clear();
 
         if (!messages || messages.length === 0) {
           chatArea.insertAdjacentHTML('beforeend', '<div class="msg-empty">暂无聊天记录，发送第一条消息吧</div>');
@@ -213,6 +258,7 @@
         }
 
         messages.forEach(msg => {
+          knownMessageIds.add(msg.id);
           const isSelf = msg.sender_id === currentUserId;
           const div = document.createElement('div');
           div.className = 'msg-row ' + (isSelf ? 'self' : 'other');
