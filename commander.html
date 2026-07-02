@@ -178,8 +178,9 @@
     fetch('/api/me', { headers: { 'Authorization': 'Bearer ' + token } })
       .then(r => r.json())
       .then(data => { if (data.id) currentUserId = data.id; })
-      .then(() => { loadPinned(); loadMessages(); startPolling(); })
-      .catch(() => {});
+      .then(() => { loadPinned(); loadMessages(); })
+      .catch(() => {})
+      .finally(() => { startPolling(); });
 
     function apiGet(url) {
       return fetch(url, { headers: { 'Authorization': 'Bearer ' + token } }).then(r => r.json());
