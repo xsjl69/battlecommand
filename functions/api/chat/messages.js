@@ -10,7 +10,7 @@ export async function onRequestGet({ request, env }) {
 
   const messages = await db.prepare(`
     SELECT cm.id, cm.sender_id, cm.receiver_id, cm.content,
-           cm.is_read, cm.is_pinned, cm.created_at,
+           cm.is_pinned, cm.created_at,
            u.username AS sender_name
     FROM chat_message cm
     JOIN user u ON cm.sender_id = u.id

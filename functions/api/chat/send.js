@@ -32,7 +32,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   const stmt = db.prepare(
-    'INSERT INTO chat_message (sender_id, receiver_id, content, is_read, is_pinned, created_at) VALUES (?, ?, ?, 0, 0, ?)'
+    'INSERT INTO chat_message (sender_id, receiver_id, content, is_pinned, created_at) VALUES (?, ?, ?, 0, ?)'
   );
 
   const now = Math.floor(Date.now() / 1000);

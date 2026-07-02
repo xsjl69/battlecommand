@@ -39,7 +39,7 @@ export async function onRequestPost({ request, env }) {
 
   // Insert new pinned message for each receiver
   const stmt = db.prepare(
-    'INSERT INTO chat_message (sender_id, receiver_id, content, is_read, is_pinned, created_at) VALUES (?, ?, ?, 0, 1, ?)'
+    'INSERT INTO chat_message (sender_id, receiver_id, content, is_pinned, created_at) VALUES (?, ?, ?, 1, ?)'
   );
 
   const now = Math.floor(Date.now() / 1000);
