@@ -49,13 +49,22 @@
     .pinned-bar {
       flex-shrink: 0; margin-top: 48px; padding: 10px 16px; background: var(--accent-light);
       border-bottom: 2px solid var(--accent); text-align: center;
-      font-size: 0.8rem; font-weight: 600; color: var(--accent);
+      font-size: 1rem; font-weight: 600; color: var(--accent);
       min-height: 40px; display: flex; align-items: center; justify-content: center;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .pinned-bar .pin-icon {
       display: inline-block; width: 14px; height: 14px; margin-right: 6px; flex-shrink: 0;
     }
+
+    /* 功能按钮 */
+    .func-btns { display: flex; gap: 6px; padding: 0 12px 8px; }
+    .func-btn {
+      padding: 6px 14px; border: 1px solid var(--card-border); border-radius: 14px;
+      background: var(--card-bg); color: var(--text); font-size: 0.85rem;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .func-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     /* 聊天区 */
     .chat-area {
@@ -153,6 +162,12 @@
   <div class="input-bar">
     <input type="text" id="msgInput" placeholder="输入消息..." maxlength="500" autocomplete="off" />
     <div class="btn-row"><button class="send-btn" id="sendBtn">发送</button><button class="pin-btn" id="pinBtn">置顶</button></div>
+  </div>
+
+  <div class="func-btns">
+    <button class="func-btn" onclick="alert('功能开发中')">进度</button>
+    <button class="func-btn" onclick="alert('功能开发中')">排刀</button>
+    <button class="func-btn" onclick="alert('功能开发中')">号表</button>
   </div>
 
   <script>
