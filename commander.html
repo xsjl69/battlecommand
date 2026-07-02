@@ -97,8 +97,9 @@
     .input-bar {
       flex-shrink: 0; padding: 10px 12px; padding-bottom: max(10px, env(safe-area-inset-bottom));
       background: var(--card-bg);
-      border-top: 1px solid var(--card-border); display: flex; gap: 8px; align-items: center;
+      border-top: 1px solid var(--card-border); display: flex; flex-direction: column; gap: 8px;
     }
+    .btn-row { display: flex; gap: 8px; justify-content: flex-end; }
     .input-bar input {
       flex: 1; padding: 10px 14px; border: 1px solid var(--card-border);
       border-radius: 20px; font-size: 0.9rem; outline: none;
@@ -151,8 +152,7 @@
 
   <div class="input-bar">
     <input type="text" id="msgInput" placeholder="输入消息..." maxlength="500" autocomplete="off" />
-    <button class="send-btn" id="sendBtn">发送</button>
-    <button class="pin-btn" id="pinBtn">置顶</button>
+    <div class="btn-row"><button class="send-btn" id="sendBtn">发送</button><button class="pin-btn" id="pinBtn">置顶</button></div>
   </div>
 
   <script>
